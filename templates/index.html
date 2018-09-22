@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars News, Facts, and Images...</title>
+  <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+  <link rel="icon" href="data:;base64,iVBORwOKGO="> 
+</head>
+
+<body>
+  <body background="https://t4.ftcdn.net/jpg/01/39/93/77/240_F_139937712_0Q0wHPimZlKm46Pg1suMWkmjJsPtvqbl.jpg">
+  <div class = "container-fluid">
+    <div class = 'row banner'>
+        <div class="col-md-3">
+        </div>
+        <div class='col-md-6 text-center'>
+            <br> <br>
+            <h1 class="banner_txt"> Mission to Mars </h1>
+            <a href="/scrape" id="scrape_btn" class="btn btn-primary" role="button">Scrape New Data</a>
+            <br> <br>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+
+    <div id="first_text" class="row">
+        <div class='col-md-1'>
+        </div>
+        <div class="col-md-10">
+        <br> <br>
+            {% for data in mars %} 
+                <h2>Latest Mars News</h2>
+                <hr>
+                <h3>{{data.news_title}}</h3>
+                <p> {{data.news_p}}</p>
+                <br>
+            <br>
+        </div>
+        <div class='col-md-1'>
+        </div>
+    </div>
+    <hr>
+    <div class='row'>
+        <div class='col-md-8'>
+            <h3>Featured Image</h3>
+            <hr>
+            <figure>
+                <img src={{data.featured_image_url}} alt="Featured image for NASA mars page">
+            </figure>
+        </div>
+        <div class='col-md-4'>
+            <div class="data-box">
+                <h3>Current Weather on Mars</h3>
+                <hr>
+                <p>{{data.mars_weather}}</p>
+            </div>
+            <br>
+            <div class="data-box">
+                <h3>Mars Facts</h3>
+                <hr>
+                {{data.profile_html}}
+            </div>
+            <br>
+            <div class="data-box">
+                <h3>Sources</h3>
+                <hr>
+                <p> <a target="_blank" href="https://mars.nasa.gov/news/"> NASA Mars News Site </a> </p>
+                <p> <a target="_blank" href="https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"> JPL Mars Space Images </a> </p>
+                <p> <a target="_blank" href="https://twitter.com/marswxreport?lang=en"> Mars Weather Twitter </a> </p>
+                <p> <a target="_blank" href="http://space-facts.com/mars/"> Mars Facts </a> </p>
+                <p> <a target="_blank" href="https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"> Mars Hemisphere Images </a> </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class='col-md-12'>
+            <h2 class="text-center"> Mars Hemispheres </h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class='col-md-6'>
+            <figure>
+                <figcaption class="hemisphere_caption"> {{data.cerberus_title}} </figcaption>
+                <img src={{data.cerberus_link}} alt="Mars hemisphere 1">
+            </figure>
+        </div>
+        <div class='col-md-6'>
+            <figure>
+                <figcaption class="hemisphere_caption"> {{data.schiaparelli_title}} </figcaption>
+                <img src={{data.schiaparelli_link}} alt="Mars hemisphere 2">
+            </figure>
+        </div>
+    </div>
+    <div class="row">
+        <div class='col-md-6'>
+            <figure>
+                <figcaption class="hemisphere_caption"> {{data.syrtis_title}} </figcaption>
+                <img src={{data.syrtis_link}} alt="Mars hemisphere 3">
+            </figure>
+        </div>
+        <div class='col-md-6'>
+            <figure>
+                <figcaption class="hemisphere_caption"> {{data.valles_title}} </figcaption>
+                <img src={{data.valles_link}} alt="Mars hemisphere 4">
+            </figure>
+        </div>
+    </div>
+    {% endfor %}              
+
+  </div>
+</body>
+</html>
+
